@@ -5,6 +5,7 @@ import firebase from "firebase";
 import firebaseConfig from "./firebaseConfig";
 import {FirebaseDatabaseNodesState} from "@react-firebase/database/dist/components/FirebaseDatabaseNodes";
 import {Place} from "./types/Place";
+import PlaceComponent from "./components/PlaceComponent";
 
 function App() {
     return (
@@ -22,17 +23,8 @@ function App() {
                             </>
                         )}
                         {!d.isLoading && d.value && (d.value as unknown as [Place]).map((place, index) => (
-                            <div key={index}>
-                                <h2>{place.name}</h2>
-
-                                <p>{place.city}</p>
-                                <p>{place.category}</p>
-
-                                <p>{place.address}</p>
-
-                                <p>{place.tips}</p>
-
-                                <a href={`https://www.google.com/maps/search/?api=1&query=${place.address}&query_place_id=${place.googleMapsPlaceId}`}>Google Maps</a>
+                            <div  key={index}>
+                                <PlaceComponent place={place}/>
                             </div>
                         ))}
                     </>
